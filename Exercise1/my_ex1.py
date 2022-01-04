@@ -11,13 +11,13 @@ plt.plot(X, y, 'bx')
 plt.show()
 
 # add ones in the first column
-X = np.hstack((np.ones(m)[:,np.newaxis], X[:,np.newaxis]))
+X = np.stack((np.ones(m), X), axis=1)
 
 theta = np.zeros(2)
-alpha = 0.01
+alpha = 0.005
 
 def cost(x, y, m, theta):
-    J = np.sum((x @ theta - y)**2) / (2*m)
+    J = 0.5 * np.mean((x @ theta - y)**2)
     return J
 
 def gradient_descent(x, y, m, theta, alpha):
@@ -27,7 +27,7 @@ def gradient_descent(x, y, m, theta, alpha):
 
 cost(X, y, m, theta)
 
-for alpha in [0.001, 0.005, 0.01, 0.02, 0.03]:
+for alpha in [0.023, 0.024, 0.025, 0.026, 0.027]:
     X, y = df[:,0], df[:,1]
     X = np.hstack((np.ones(m)[:,np.newaxis], X[:,np.newaxis]))
     theta = np.zeros(2)
